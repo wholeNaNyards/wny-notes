@@ -56,6 +56,8 @@ functions:
   # - authorizer: authenticate using the AWS IAM role
   create:
     handler: create.main
+    name: wny-notes-create-${self:custom.stage}
+    description: "Handler for creating a note."
     events:
       - http:
           path: notes
@@ -68,6 +70,8 @@ functions:
     # - path: url path is /notes/{id}
     # - method: GET request
     handler: get.main
+    name: wny-notes-get-${self:custom.stage}
+    description: "Handler for getting a note."
     events:
       - http:
           path: notes/{id}
@@ -80,6 +84,8 @@ functions:
     # - path: url path is /notes
     # - method: GET request
     handler: list.main
+    name: wny-notes-list-${self:custom.stage}
+    description: "Handler for listing all notes."
     events:
       - http:
           path: notes
@@ -92,6 +98,8 @@ functions:
     # - path: url path is /notes/{id}
     # - method: PUT request
     handler: update.main
+    name: wny-notes-update-${self:custom.stage}
+    description: "Handler for updating a note."
     events:
       - http:
           path: notes/{id}
@@ -104,6 +112,8 @@ functions:
     # - path: url path is /notes/{id}
     # - method: DELETE request
     handler: delete.main
+    name: wny-notes-delete-${self:custom.stage}
+    description: "Handler for deleting a note."
     events:
       - http:
           path: notes/{id}
@@ -121,3 +131,4 @@ resources:
   - ${file(resources/s3-bucket.yml)}
   # Cognito
   - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}
