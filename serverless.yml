@@ -13,7 +13,7 @@ custom:
   # Fallback to default if it is not in prod.
   environment: ${file(env.yml):${self:custom.stage}, file(env.yml):default}
   # Set the table name here so we can use it while testing locally
-  tableName: wny-notes-${self:custom.stage}
+  tableName: ${self:custom.stage}-wny-notes
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -60,7 +60,7 @@ functions:
   # - authorizer: authenticate using the AWS IAM role
   create:
     handler: create.main
-    name: wny-notes-create-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-create
     description: "Handler for creating a note."
     events:
       - http:
@@ -74,7 +74,7 @@ functions:
     # - path: url path is /notes/{id}
     # - method: GET request
     handler: get.main
-    name: wny-notes-get-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-get
     description: "Handler for getting a note."
     events:
       - http:
@@ -88,7 +88,7 @@ functions:
     # - path: url path is /notes
     # - method: GET request
     handler: list.main
-    name: wny-notes-list-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-list
     description: "Handler for listing all notes."
     events:
       - http:
@@ -102,7 +102,7 @@ functions:
     # - path: url path is /notes/{id}
     # - method: PUT request
     handler: update.main
-    name: wny-notes-update-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-update
     description: "Handler for updating a note."
     events:
       - http:
@@ -116,7 +116,7 @@ functions:
     # - path: url path is /notes/{id}
     # - method: DELETE request
     handler: delete.main
-    name: wny-notes-delete-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-delete
     description: "Handler for deleting a note."
     events:
       - http:
@@ -127,7 +127,7 @@ functions:
 
   billing:
     handler: billing.main
-    name: wny-notes-billing-${self:custom.stage}
+    name: ${self:custom.stage}-wny-notes-billing
     description: "Handler for processing a purchase."
     events:
       - http:
