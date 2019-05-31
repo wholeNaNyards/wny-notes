@@ -121,6 +121,17 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  billing:
+    handler: billing.main
+    name: wny-notes-billing-${self:custom.stage}
+    description: "Handler for processing a purchase."
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
