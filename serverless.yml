@@ -28,7 +28,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
-  memorySize: 512
+  memorySize: 128
   timeout: 10
   region: us-east-1
 
